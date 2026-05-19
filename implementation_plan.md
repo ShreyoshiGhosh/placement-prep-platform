@@ -1,9 +1,9 @@
 # Placement Prep Platform - Implementation Plan
 
 ## Phase 1: Foundation & Infrastructure (The Skeleton)
-- [ ] Initialize FastAPI project structure with `SQLModel`.
+- [x] Initialize FastAPI project structure with `SQLModel`.
 - [ ] Setup User Authentication (JWT based, Secure & Scalable).
-- [ ] Create a "Health Check" and "Protected Route" to verify the bridge between React & FastAPI.
+- [x] Create a "Health Check" and "Protected Route" to verify the bridge between React & FastAPI.
 - [ ] **Learning Goal**: Understand JWT, Password Hashing (bcrypt), and Dependency Injection in FastAPI.
 
 ## Phase 2: Aptitude Engine (The Logic)
