@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends
 # pyrefly: ignore [missing-import]
 from sqlmodel import Session, text
 from app.database import get_db
-
+from .routers import auth, users
 app = FastAPI(
     title = "Placement Prep Platform",
     description = "Backend API for adaptive aptitude and reasoning practice",
@@ -20,3 +20,6 @@ def health_check(db: Session = Depends(get_db)):
         return { "status": "healthy", "database": "connected"}
     except Exception as e:
         return { "status": "unhealthy", "database": "disconnected", "error": str(e)}
+
+app.include_router(auth.router, prefix="/auth")
+app.include_router(users.router, prefix="/users")
