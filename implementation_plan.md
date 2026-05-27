@@ -7,7 +7,8 @@
 - [x] **Learning Goal**: Understand JWT, Password Hashing (bcrypt), and Dependency Injection in FastAPI.
 
 ## Phase 2: Aptitude Engine (The Logic)
-- [ ] Design the Database Schema for Questions (Topic, Difficulty, Tags).
+- [x] Design the Database Schema for Questions (Topic, Difficulty, Tags).
+- [x] Implement API logic for randomized quiz genration, resume quiz, submit quiz, and auto save response
 - [ ] Implement the **Adaptive Difficulty Algorithm** (The logic that picks the next question based on performance).
 - [ ] Build the Practice Session API (Timer, Question selection).
 - [ ] **Learning Goal**: CRUD operations, complex SQL queries, and algorithmic thinking for difficulty adjustment.
