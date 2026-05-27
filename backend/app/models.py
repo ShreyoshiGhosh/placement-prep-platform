@@ -90,6 +90,8 @@ class Response(SQLModel,table = True):
     is_correct: Optional[bool] = Field(default = None, nullable = True) 
     response_time_seconds: int = Field(default = None, nullable = True) 
     difficulty_at_attempt: Optional[int] = Field(default = None,nullable = True)
+    visited: bool = Field(default=False,nullable=False)
+    marked_for_review: bool = Field(default=False,nullable=False)
     answered_at: datetime = Field(default_factory = datetime.utcnow)
 
     
@@ -100,7 +102,8 @@ class Quiz( SQLModel, table = True):
     quiz_mode:str = Field(nullable = False)
     status: str = Field(nullable = False)
     started_at : datetime = Field(default_factory = datetime.utcnow, nullable = False)
-    ended_at: Optional[datetime] = Field(default=None, nullable=True)
+    completed_at: Optional[datetime] = Field(default=None, nullable=True)
+    expires_at : datetime = Field(nullable = False)
     score: int = Field(default = 0, nullable = True) 
     total_questions : int = Field(default = 0, nullable = True) 
     accuracy : Optional[float] = Field(default= None,nullable = True) 
