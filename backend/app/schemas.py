@@ -2,15 +2,34 @@ import uuid
 from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel, Field
-
+#-----------------------------USER SCHEMAS--------------------------------#
 class UserBase(BaseModel):
     email: str
     username: str
     first_name: str 
     last_name: Optional[str] = None
 
-class UserCreate(UserBase):
+class UserCreateManual(UserBase): #if the user is signing up with email and password
     password:str
+
+
+class UsernameCheckResponse(BaseModel): #to check the availability of the username during registration
+    username: str
+    available: bool
+
+class UserCreateGoogle(BaseModel): #if user is signing up with google auth
+    email : str
+    first_name : Optional[str] = None
+    last_name : Optional[str] = None
+    google_sub : str
+
+
+class ForgotPasswordRequest(BaseModel):
+    email: str
+
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password:str
 
 class UserRead(UserBase):
     id : uuid.UUID
@@ -19,6 +38,14 @@ class UserRead(UserBase):
     class Config: 
         from_attributes = True
 
+class AuthResponse(BaseModel):
+    access_token:str
+    token_type:str
+    user : UserRead
+
+class GoogleLoginRequest(BaseModel):
+    id_token: str
+#-----------------------------AUTH SCHEMAS--------------------------------#
 class Token(BaseModel): 
     access_token: str
     token_type: str

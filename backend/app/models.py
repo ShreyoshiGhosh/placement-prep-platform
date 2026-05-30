@@ -26,17 +26,26 @@ class QuestionTag(SQLModel, table = True):
 
 #------------------ CORE MODELS --------------------#
 
-class User(SQLModel, table = True):
+class User(SQLModel, table=True):
     __tablename__ = "users"
 
-    id: Optional[uuid.UUID] = Field(default_factory=uuid.uuid4, primary_key = True) 
-    username: str = Field(unique = True, index = True, max_length = 50)
-    email:str = Field(unique = True, index = True, max_length = 255)
-    password_hash:str 
-    first_name: Optional[str] = Field(default = None, max_length = 100)
-    last_name: Optional[str] = Field(default = None, max_length = 100)
-    created_at: datetime = Field(default_factory = datetime.utcnow)
-    updated_at: datetime = Field(default_factory = datetime.utcnow)
+    id: Optional[uuid.UUID] = Field(default_factory=uuid.uuid4, primary_key=True)
+    email: str = Field(unique=True, index=True, max_length=255)
+    username: Optional[str] = Field(default=None, unique=True, index=True, max_length=50)
+
+    password_hash: Optional[str] = Field(default=None)
+    first_name: Optional[str] = Field(default=None, max_length=100)
+    last_name: Optional[str] = Field(default=None, max_length=100)
+
+    password_reset_token: Optional[str] = Field(default=None)
+    password_reset_expires_at: Optional[datetime] = Field(default=None)
+
+    auth_provider: str = Field(default="local")
+    google_sub: Optional[str] = Field(default=None, index=True)
+    is_email_verified: bool = Field(default=False)
+
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
 
 
 class Topic(SQLModel, table = True):

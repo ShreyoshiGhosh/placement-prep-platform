@@ -1,13 +1,23 @@
 
 from fastapi import FastAPI, Depends
-# pyrefly: ignore [missing-import]
+from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Session, text
+
 from app.database import get_db
 from .routers import auth, users, quiz_engine
 app = FastAPI(
     title = "Placement Prep Platform",
     description = "Backend API for adaptive aptitude and reasoning practice",
     version = "1.0.0"
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.get("/")
